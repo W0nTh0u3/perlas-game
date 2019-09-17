@@ -1,4 +1,13 @@
 sceneSetups:
-- path: Assets/PDollar/Scene/Demo.unity
+- path: Assets/Scenes/Game UI.unity
   isLoaded: 1
   isActive: 1
+  isSubScene: 0
+- path: Assets/Scenes/Game Level Select.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/Game Mismo.unity
+  isLoaded: 0
+  isActive: 0
+  isSubScene: 0
