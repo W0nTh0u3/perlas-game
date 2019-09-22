@@ -58,6 +58,7 @@
  * SUCH DAMAGE.
 **/
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -69,6 +70,11 @@ namespace PDollarGestureRecognizer
     /// </summary>
     public class PointCloudRecognizer
     {
+        public class theTemplate
+        {
+            public float Dist {get; set;}
+            public string gestureName {get; set;}
+        }
         /// <summary>
         /// Main function of the $P recognizer.
         /// Classifies a candidate gesture against a set of training samples.
@@ -79,18 +85,26 @@ namespace PDollarGestureRecognizer
         /// <returns></returns>
         public static Result Classify(Gesture candidate, Gesture[] trainingSet)
         {
+            var templateList = new List<theTemplate>();
             float minDistance = float.MaxValue;
             string gestureClass = "";
             foreach (Gesture template in trainingSet)
             {
                 float dist = GreedyCloudMatch(candidate.Points, template.Points);
+                templateList.Add(new theTemplate{
+                    Dist = dist,
+                    gestureName = template.Name
+                });
                 if (dist < minDistance)
                 {
                     minDistance = dist;
-                    gestureClass = template.Name;
-                }
+                    gestureClass = template.Name; 
+                } 
             }
-
+            List<theTemplate> SortedList = templateList.OrderBy(o=>o.Dist).ToList();
+            for(int i = 0; i < 3; i++){
+                Debug.Log(Mathf.Max((SortedList[i].Dist - 2.0f) / -2.0f, 0.0f) + " " + SortedList[i].gestureName);
+            }
 			return gestureClass == "" ? new Result() {GestureClass = "No match", Score = 0.0f} : new Result() {GestureClass = gestureClass, Score = Mathf.Max((minDistance - 2.0f) / -2.0f, 0.0f)};
         }
 

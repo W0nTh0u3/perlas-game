@@ -15,11 +15,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateMachineNode
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -59,24 +56,28 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9714}
     - Class: 114
+      Script: {instanceID: 9914}
+    - Class: 114
       Script: {instanceID: 9964}
     - Class: 114
       Script: {instanceID: 10458}
     - Class: 114
-      Script: {instanceID: 10878}
+      Script: {instanceID: 10880}
     - Class: 114
-      Script: {instanceID: 10932}
+      Script: {instanceID: 10934}
     - Class: 114
-      Script: {instanceID: 11486}
+      Script: {instanceID: 11488}
     - Class: 114
-      Script: {instanceID: 11934}
+      Script: {instanceID: 11936}
     - Class: 114
-      Script: {instanceID: 15686}
+      Script: {instanceID: 11988}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
       Script: {instanceID: 0}
     - Class: 124
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -144,21 +145,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10458}
     - Class: 114
-      Script: {instanceID: 10848}
+      Script: {instanceID: 10790}
     - Class: 114
-      Script: {instanceID: 10864}
+      Script: {instanceID: 10850}
     - Class: 114
-      Script: {instanceID: 10932}
+      Script: {instanceID: 10866}
     - Class: 114
-      Script: {instanceID: 10954}
+      Script: {instanceID: 10934}
     - Class: 114
-      Script: {instanceID: 11308}
+      Script: {instanceID: 10956}
     - Class: 114
-      Script: {instanceID: 11486}
+      Script: {instanceID: 11310}
     - Class: 114
-      Script: {instanceID: 11934}
+      Script: {instanceID: 11488}
     - Class: 114
-      Script: {instanceID: 14020}
+      Script: {instanceID: 11936}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -477,6 +478,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: gameUIScene
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAnimator
@@ -494,7 +501,7 @@ ScriptsOnlyBuild:
     className: selectQuote
   - hash:
       serializedVersion: 2
-      Hash: 551ae1d0a907dde6b37840d359dc2237
+      Hash: c566be975205f7567e1c9fda1591eeed
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Demo
@@ -740,6 +747,12 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: gameMismoScene
+  - hash:
+      serializedVersion: 2
       Hash: 0fd6822f6177297bd0eb4d83cc7a9030
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -750,18 +763,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: gameUIScene
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: gameMismoScene
   platform: 13
   scenePathNames:
   - Assets/Scenes/Game UI.unity
