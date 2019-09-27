@@ -20,7 +20,7 @@ public class gameMismo : MonoBehaviour {
 
 	private Vector3 virtualKeyPosition = Vector2.zero;
 	private Rect drawArea = new Rect (0, 0, Screen.width, Screen.height / 2);
-	private Rect boxArea = new Rect (0, Screen.height / 2, Screen.width, Screen.height / 2);
+	// private Rect boxArea = new Rect (0, Screen.height / 2, Screen.width, Screen.height / 2);
 
 	private RuntimePlatform platform;
 	private int vertexCount = 0;
