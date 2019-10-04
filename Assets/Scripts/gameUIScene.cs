@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class gameUIScene : MonoBehaviour
 {
+    public int timeAttackSceneNumber;
+    public int classicModeSceneNumber;
     private int sceneIndex;
     // Start is called before the first frame update
     void Start(){
@@ -19,6 +21,14 @@ public class gameUIScene : MonoBehaviour
     }
 
     public void LoadNextLevel(){
-        SceneManager.LoadScene(sceneIndex + 1);
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void LoadTimeAttackGame(){
+        SceneManager.LoadScene(timeAttackSceneNumber);
+    }
+
+    public void LoadClassicModeGame(){
+        SceneManager.LoadScene(classicModeSceneNumber);
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class gameMismoScene : MonoBehaviour
 {
+    public int homeMenuIndexNumber;
     private int sceneIndex;
     // Start is called before the first frame update
     void Start(){
@@ -14,7 +15,7 @@ public class gameMismoScene : MonoBehaviour
     // Update is called once per frame
     void Update(){
         if(Input.GetKeyDown(KeyCode.Escape)){
-            SceneManager.LoadScene(sceneIndex - 1);
+            SceneManager.LoadScene(homeMenuIndexNumber);
         }
     }
 }
