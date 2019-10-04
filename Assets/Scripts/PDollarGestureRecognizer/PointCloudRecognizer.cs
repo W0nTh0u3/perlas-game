@@ -83,7 +83,7 @@ namespace PDollarGestureRecognizer
         /// <param name="candidate"></param>
         /// <param name="trainingSet"></param>
         /// <returns></returns>
-        public static Result Classify(Gesture candidate, Gesture[] trainingSet)
+        public static Result Classify(string theName,Gesture candidate, Gesture[] trainingSet)
         {
             var templateList = new List<theTemplate>();
             float minDistance = float.MaxValue;
@@ -95,14 +95,19 @@ namespace PDollarGestureRecognizer
                     Dist = dist,
                     gestureName = template.Name
                 });
-                if (dist < minDistance)
+                // if (dist < minDistance)
+                // {
+                //     minDistance = dist;
+                //     gestureClass = template.Name; 
+                // }
+                if (theName == template.Name)
                 {
                     minDistance = dist;
                     gestureClass = template.Name; 
-                } 
+                }  
             }
             List<theTemplate> SortedList = templateList.OrderBy(o=>o.Dist).ToList();
-            for(int i = 0; i < 3; i++){
+            for(int i = 0; i < 5; i++){
                 Debug.Log(Mathf.Max((SortedList[i].Dist - 2.0f) / -2.0f, 0.0f) + " " + SortedList[i].gestureName);
             }
 			return gestureClass == "" ? new Result() {GestureClass = "No match", Score = 0.0f} : new Result() {GestureClass = gestureClass, Score = Mathf.Max((minDistance - 2.0f) / -2.0f, 0.0f)};

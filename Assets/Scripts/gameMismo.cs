@@ -44,7 +44,7 @@ public class gameMismo : MonoBehaviour {
 		//drawArea = new Rect(0, 0, Screen.width, Screen.height / 2);
 
 		//Load pre-made gestures
-		TextAsset[] gesturesXml = Resources.LoadAll<TextAsset> ("GestureSet/10-stylus-MEDIUM/");
+		TextAsset[] gesturesXml = Resources.LoadAll<TextAsset> ("GestureSet/baybayin/");
 		foreach (TextAsset gestureXml in gesturesXml) {
 			trainingSet.Add (GestureIO.ReadGestureFromXML (gestureXml.text));
 		}
@@ -64,7 +64,7 @@ public class gameMismo : MonoBehaviour {
 
 	void shuffler(){
 		randomGesture = selections[UnityEngine.Random.Range (0, selections.Length)];
-		drawLabel.text = "Draw: " + randomGesture.Name;
+		drawLabel.text = randomGesture.Name;
 	}
 
 	void Update () {
@@ -112,9 +112,10 @@ public class gameMismo : MonoBehaviour {
 	void taskOnClick () {
 		recognized = true;
 		Gesture candidate = new Gesture (points.ToArray ());
-		Result gestureResult = PointCloudRecognizer.Classify (candidate, trainingSet.ToArray ());
-		if (gestureResult.GestureClass == randomGesture.Name) {
-			verifyLabel.text = "Correct";
+		Result gestureResult = PointCloudRecognizer.Classify (randomGesture.Name ,candidate, trainingSet.ToArray ());
+		if (gestureResult.Score > 0.9f) {
+			float percentScore = (gestureResult.Score)*100;
+			verifyLabel.text = "Correct: "+ percentScore.ToString() +" %";
 			Score++;
 			scoreLabel.text = "Score: " + Score;
 			shuffler();
