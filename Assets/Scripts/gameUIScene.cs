@@ -7,6 +7,7 @@ public class gameUIScene : MonoBehaviour
 {
     public int timeAttackSceneNumber;
     public int classicModeSceneNumber;
+    public int homeSceneNumber;
     private int sceneIndex;
     // Start is called before the first frame update
     void Start(){
@@ -30,5 +31,9 @@ public class gameUIScene : MonoBehaviour
 
     public void LoadClassicModeGame(){
         SceneManager.LoadScene(classicModeSceneNumber);
+    }
+
+    public void LoadHomeScreen(){
+        SceneManager.LoadScene(homeSceneNumber);
     }
 }

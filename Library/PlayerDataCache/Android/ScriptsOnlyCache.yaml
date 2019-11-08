@@ -26,7 +26,6 @@ ScriptsOnlyBuild:
     - TMPro.TextMeshProUGUI
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -37,7 +36,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.RawImage
     - UnityEngine.UI.Text
     com.unity.multiplayer-hlapi.Runtime.dll:
-    - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
   sceneClasses:
     Assets/Scenes/Game Level Select.unity:
@@ -58,17 +56,17 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9718}
+      Script: {instanceID: 9732}
     - Class: 114
-      Script: {instanceID: 9982}
+      Script: {instanceID: 9996}
     - Class: 114
-      Script: {instanceID: 11252}
+      Script: {instanceID: 11266}
     - Class: 114
-      Script: {instanceID: 11494}
+      Script: {instanceID: 11510}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11588}
     - Class: 114
-      Script: {instanceID: 12102}
+      Script: {instanceID: 12118}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -103,23 +101,29 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9718}
+      Script: {instanceID: 9732}
     - Class: 114
-      Script: {instanceID: 9926}
+      Script: {instanceID: 9778}
     - Class: 114
-      Script: {instanceID: 9982}
+      Script: {instanceID: 9940}
     - Class: 114
-      Script: {instanceID: 10494}
+      Script: {instanceID: 9996}
     - Class: 114
-      Script: {instanceID: 10932}
+      Script: {instanceID: 10066}
     - Class: 114
-      Script: {instanceID: 10990}
+      Script: {instanceID: 10166}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 10508}
     - Class: 114
-      Script: {instanceID: 12050}
+      Script: {instanceID: 10946}
     - Class: 114
-      Script: {instanceID: 12102}
+      Script: {instanceID: 11004}
+    - Class: 114
+      Script: {instanceID: 11588}
+    - Class: 114
+      Script: {instanceID: 12066}
+    - Class: 114
+      Script: {instanceID: 12118}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -174,65 +178,65 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9718}
+      Script: {instanceID: 9732}
     - Class: 114
-      Script: {instanceID: 9760}
+      Script: {instanceID: 9774}
     - Class: 114
-      Script: {instanceID: 9764}
+      Script: {instanceID: 9778}
     - Class: 114
-      Script: {instanceID: 9858}
+      Script: {instanceID: 9872}
     - Class: 114
-      Script: {instanceID: 9860}
+      Script: {instanceID: 9874}
     - Class: 114
-      Script: {instanceID: 9862}
+      Script: {instanceID: 9876}
     - Class: 114
-      Script: {instanceID: 9926}
+      Script: {instanceID: 9940}
     - Class: 114
-      Script: {instanceID: 9938}
+      Script: {instanceID: 9952}
     - Class: 114
-      Script: {instanceID: 9966}
+      Script: {instanceID: 9980}
     - Class: 114
-      Script: {instanceID: 9972}
+      Script: {instanceID: 9986}
     - Class: 114
-      Script: {instanceID: 9982}
+      Script: {instanceID: 9996}
     - Class: 114
-      Script: {instanceID: 10052}
+      Script: {instanceID: 10066}
     - Class: 114
-      Script: {instanceID: 10136}
+      Script: {instanceID: 10150}
     - Class: 114
-      Script: {instanceID: 10152}
+      Script: {instanceID: 10166}
     - Class: 114
-      Script: {instanceID: 10206}
+      Script: {instanceID: 10220}
     - Class: 114
-      Script: {instanceID: 10494}
+      Script: {instanceID: 10508}
     - Class: 114
-      Script: {instanceID: 10530}
+      Script: {instanceID: 10544}
     - Class: 114
-      Script: {instanceID: 10844}
+      Script: {instanceID: 10858}
     - Class: 114
-      Script: {instanceID: 10918}
+      Script: {instanceID: 10932}
     - Class: 114
-      Script: {instanceID: 10990}
+      Script: {instanceID: 11004}
     - Class: 114
-      Script: {instanceID: 11012}
+      Script: {instanceID: 11026}
     - Class: 114
-      Script: {instanceID: 11252}
+      Script: {instanceID: 11266}
     - Class: 114
-      Script: {instanceID: 11270}
+      Script: {instanceID: 11284}
     - Class: 114
-      Script: {instanceID: 11380}
+      Script: {instanceID: 11394}
     - Class: 114
-      Script: {instanceID: 11494}
+      Script: {instanceID: 11510}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11588}
     - Class: 114
-      Script: {instanceID: 11784}
+      Script: {instanceID: 11800}
     - Class: 114
-      Script: {instanceID: 11916}
+      Script: {instanceID: 11932}
     - Class: 114
-      Script: {instanceID: 12014}
+      Script: {instanceID: 12030}
     - Class: 114
-      Script: {instanceID: 12050}
+      Script: {instanceID: 12066}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -392,6 +396,18 @@ ScriptsOnlyBuild:
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
     className: NetworkTransform
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: UnityEngine.Advertisements.dll
+    namespaceName: UnityEngine.Advertisements
+    className: CallbackExecutor
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: UnityEngine.Advertisements.dll
+    namespaceName: UnityEngine.Advertisements.Editor
+    className: Placeholder
   - hash:
       serializedVersion: 2
       Hash: 0f1d4fbf6e162a70489a9bfe0e62e09c
@@ -658,7 +674,7 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
-      Hash: c566be975205f7567e1c9fda1591eeed
+      Hash: 4dfa25dc8734f28d9f3851cc3b6ad40a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: gameMismo

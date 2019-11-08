@@ -764,7 +764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a5c07bf501c45d40b99793df17f9d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homeMenuIndexNumber: 0
+  homeMenuIndexNumber: 1
 --- !u!114 &1585832594
 MonoBehaviour:
   m_ObjectHideFlags: 0
