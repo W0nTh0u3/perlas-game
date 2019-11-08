@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Mismo.unity
     guid: bacf025fd0d5b485e9ae059c8dd4eae6
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Game Did You Know.unity
     guid: cfa8d6d64d9d05b46890057a33a54b02
   m_configObjects: {}

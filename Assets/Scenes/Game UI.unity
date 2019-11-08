@@ -462,6 +462,7 @@ MonoBehaviour:
   timeAttackSceneNumber: 3
   classicModeSceneNumber: 2
   homeSceneNumber: 1
+  loadSceneNumber: 4
 --- !u!4 &269969665
 Transform:
   m_ObjectHideFlags: 0
@@ -2058,7 +2059,6 @@ GameObject:
   - component: {fileID: 832639548}
   - component: {fileID: 832639547}
   - component: {fileID: 832639546}
-  - component: {fileID: 832639551}
   - component: {fileID: 832639553}
   - component: {fileID: 832639552}
   m_Layer: 5
@@ -2173,21 +2173,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &832639551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 832639545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: febe4497df321434eb893819811af599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeAttackSceneNumber: 0
-  classicModeSceneNumber: 0
-  homeSceneNumber: 0
 --- !u!114 &832639552
 MonoBehaviour:
   m_ObjectHideFlags: 0
