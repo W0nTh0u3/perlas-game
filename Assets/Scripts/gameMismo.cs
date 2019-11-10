@@ -59,6 +59,7 @@ public class gameMismo : MonoBehaviour {
         shuffler ();
         drawLabel.text = "";
         countDownLabel.text = "";
+        verifyLabel.text = "";
         // Gesture randomGesture = 
         // foreach(Gesture listings in trainingSet.ToArray()){
         // 	Debug.Log(listings.Name);
@@ -143,9 +144,12 @@ public class gameMismo : MonoBehaviour {
             timeLeft += 10f;
             shuffler ();
         } else {
-            verifyLabel.text = "Incorrect";
-            Score--;
-            scoreLabel.text = "Score: " + Score;
+            if (Score > 0) {
+                verifyLabel.text = "Incorrect";
+                Score--;
+                scoreLabel.text = "Score: " + Score;
+            } else
+                gameOverScreen ();
         }
 
         message = "You have written" + gestureResult.GestureClass + " " + gestureResult.Score;

@@ -337,20 +337,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/UI
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources/UI
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\UnityProject\perlas-game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 99}
-    m_SelectedIDs: 0e340000
-    m_LastClickedID: 13326
-    m_ExpandedIDs: 00000000a42f0000de30000012310000783a00007a3a00007c3a00007e3a0000803a000000ca9a3b
+    scrollPos: {x: 0, y: 103}
+    m_SelectedIDs: 54310000
+    m_LastClickedID: 12628
+    m_ExpandedIDs: 00000000aa2f000000310000423100000a3b00000c3b00000e3b0000103b0000123b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -378,7 +378,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a42f0000783a00007a3a00007c3a00007e3a0000803a0000
+    m_ExpandedIDs: 00000000aa2f000000310000423100000a3b00000c3b00000e3b0000103b0000123b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -471,7 +471,7 @@ MonoBehaviour:
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 458.37662
+  m_LastVerticalScrollValue: 0
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -503,18 +503,18 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: c0edfeff6af0feff9af0feffa6f1feffacf1feffb4f1feffc6f1feffcaf1feff760bffff200effff500effff580fffff5e0fffff660fffff720fffff7e0fffff6224ffff0827ffff3427ffff3c28ffff4228ffff4a28ffff5628ffff6228ffff0248ffff2c77ffff5ea9ffff06acffff36acffff3eadffff44adffff4cadffff5eadffff62adfffff6b1ffff9eb4ffffceb4ffffd6b5ffffdcb5ffffe4b5fffff6b5fffffab5ffffaee0ffff60fbffff62fbffff66fbfffff64b0000fe4b0000125200001a5200006e5600003e9000001c9100006a910000ae910000189200004a9200003aa1000002d7000032d7000030ef000066f600006ef60000d2ff0000daff000048120100721201007a1201002a18010032180100462c01004e2c0100682c01007836010066370100f8370100463801007438010004390100943b0100ae3b0100c23b0100a6410100ba410100c24101007e460100924601009a460100b44a0100ce4a0100e24a0100
+      m_ExpandedIDs: cae4ffffa2e7ffffd0e7ffffdce8ffffe2e8fffffee8ffff10e9ffff14e9ffff60fbffff64fbffff66fbffffb03a0000b83a0000aa4f0000d84f00009c560000b4560000bc560000f6560000fe560000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Canvas
-        m_OriginalName: Canvas
+        m_Name: boxPanel
+        m_OriginalName: boxPanel
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 83610
+        m_UserData: 22196
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -563,9 +563,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.8396194, y: 6.9544926, z: -35.83556}
+    m_Target: {x: -12.815627, y: -14.210956, z: 59.34375}
     speed: 2
-    m_Value: {x: 0.8396194, y: 6.9544926, z: -35.83556}
+    m_Value: {x: -12.815627, y: -14.210956, z: 59.34375}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -598,9 +598,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 136.85716
+    m_Target: 97.21435
     speed: 2
-    m_Value: 136.85716
+    m_Value: 93.02808
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -663,8 +663,8 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -82
-    m_HBaseRangeMax: 82
+    m_HBaseRangeMin: -370
+    m_HBaseRangeMax: 370
     m_VBaseRangeMin: -163.5
     m_VBaseRangeMax: 163.5
     m_HAllowExceedBaseRangeMin: 1
@@ -730,6 +730,6 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 436
-    width: 1087
+    width: 1089
     height: 253
   m_ViewDataDictionary: {fileID: 0}
