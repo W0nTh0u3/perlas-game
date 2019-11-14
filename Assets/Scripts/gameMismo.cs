@@ -7,6 +7,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class gameMismo : MonoBehaviour {
+    public Animator animationRedGreen;
+    private Data LevelScore = new Data ();
+    public Image drawPanel;
     public Button recognizeButton;
     public Transform gestureOnScreenPrefab;
     public Text drawLabel;
@@ -38,13 +41,25 @@ public class gameMismo : MonoBehaviour {
     //GUI
     private string message;
     private bool recognized;
+    private bool GameOver = false;
 
     //private string newGestureName = "";
     private float timeLeft = 11f;
     private float countDownTime = 4f;
+    private float timeForward = 0f;
+    private bool isZenMode;
+    private int numLevelClicked = 0;
+    private Result gestureResult;
     void Start () {
+        Debug.Log(Application.persistentDataPath);
+        animationRedGreen.Play("DefaultDraw");
+        isZenMode = BoolPrefs.GetBool ("isTimeAttack");
+        if (isZenMode == false) {
+            numLevelClicked = PlayerPrefs.GetInt ("levelToLoad");
+        }
+        dataC loadedData = saveSystem.LoadData ();
         Button btn = recognizeButton.GetComponent<Button> ();
-        btn.onClick.AddListener (taskOnClick);
+        btn.onClick.AddListener (TaskOnClick);
         platform = Application.platform;
         //drawArea = new Rect(0, 0, Screen.width, Screen.height / 2);
 
@@ -54,75 +69,30 @@ public class gameMismo : MonoBehaviour {
             trainingSet.Add (GestureIO.ReadGestureFromXML (gestureXml.text));
         }
         selections = trainingSet.ToArray ();
-        //Debug.Log (randomGesture.Name);
-        scoreLabel.text = "Score: " + Score;
-        shuffler ();
+        if (isZenMode == true)
+            scoreLabel.text = "Score:\n" + Score;
+        else
+            scoreLabel.text = "";
+        Shuffler ();
         drawLabel.text = "";
         countDownLabel.text = "";
         verifyLabel.text = "";
-        // Gesture randomGesture = 
-        // foreach(Gesture listings in trainingSet.ToArray()){
-        // 	Debug.Log(listings.Name);
-        // }
-        // //Load user custom gestures
-        // string[] filePaths = Directory.GetFiles (Application.persistentDataPath, "*.xml");
-        // foreach (string filePath in filePaths)
-        // 	trainingSet.Add (GestureIO.ReadGestureFromFile (filePath));
     }
 
-    void shuffler () {
+    void Shuffler () {
         randomGesture = selections[UnityEngine.Random.Range (0, selections.Length)];
+        Debug.Log (isZenMode);
+        Debug.Log (numLevelClicked);
         //drawLabel.text = randomGesture.Name;
     }
 
     void Update () {
         if (countDownTime < 0) {
-            timeLeft -= Time.deltaTime;
-            if (timeLeft >= 0) {
-                countDownLabel.text = "";
-                drawLabel.text = randomGesture.Name;
-                timeLabel.text = "Time Left: " + Mathf.RoundToInt (timeLeft);
-                if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer) {
-                    if (Input.touchCount > 0) {
-                        virtualKeyPosition = new Vector3 (Input.GetTouch (0).position.x, Input.GetTouch (0).position.y);
-                    }
-                } else {
-                    if (Input.GetMouseButton (0)) {
-                        virtualKeyPosition = new Vector3 (Input.mousePosition.x, Input.mousePosition.y);
-                    }
-                }
+            if (isZenMode == true)
+                ZenMode ();
+            else
+                ClassicMode ();
 
-                if (drawArea.Contains (virtualKeyPosition)) {
-
-                    if (Input.GetMouseButtonDown (0)) {
-
-                        if (recognized) {
-                            recognized = false;
-                            strokeId = -1;
-                            clearBoard ();
-                        }
-
-                        ++strokeId;
-
-                        Transform tmpGesture = Instantiate (gestureOnScreenPrefab, transform.position, transform.rotation) as Transform;
-                        currentGestureLineRenderer = tmpGesture.GetComponent<LineRenderer> ();
-
-                        gestureLinesRenderer.Add (currentGestureLineRenderer);
-
-                        vertexCount = 0;
-                    }
-
-                    if (Input.GetMouseButton (0)) {
-                        points.Add (new Point (virtualKeyPosition.x, -virtualKeyPosition.y, strokeId));
-
-                        // currentGestureLineRenderer.SetVertexCount (++vertexCount);
-                        currentGestureLineRenderer.positionCount = ++vertexCount;
-                        currentGestureLineRenderer.SetPosition (vertexCount - 1, Camera.main.ScreenToWorldPoint (new Vector3 (virtualKeyPosition.x, virtualKeyPosition.y, 10)));
-                    }
-                }
-            } else {
-                gameOverScreen ();
-            }
         } else {
             countDownTime -= Time.deltaTime;
             if (Mathf.RoundToInt (countDownTime) == 0)
@@ -131,37 +101,80 @@ public class gameMismo : MonoBehaviour {
                 countDownLabel.text = Mathf.RoundToInt (countDownTime).ToString ();
         }
     }
-
-    void taskOnClick () {
-        recognized = true;
-        Gesture candidate = new Gesture (points.ToArray ());
-        Result gestureResult = PointCloudRecognizer.Classify (randomGesture.Name, candidate, trainingSet.ToArray ());
+    void ZenMode () {
+        timeLeft -= Time.deltaTime;
+        if (timeLeft >= 0) {
+            countDownLabel.text = "";
+            drawLabel.text = randomGesture.Name;
+            timeLabel.text = Mathf.RoundToInt (timeLeft).ToString ();
+            DrawMode ();
+        } else {
+            if (GameOver != true)
+                GameOverScreen ();
+        }
+    }
+    void ZenModeCheck () {
         if (gestureResult.Score > 0.9f) {
             float percentScore = (gestureResult.Score) * 100;
-            verifyLabel.text = "Correct: " + percentScore.ToString () + " %";
+            animationRedGreen.Play("greenDraw",-1,0f);
+            //verifyLabel.text = "Correct: " + percentScore.ToString () + " %";
+            verifyLabel.text = "Correct";
             Score++;
-            scoreLabel.text = "Score: " + Score;
+            scoreLabel.text = "Score:\n" + Score;
             timeLeft += 10f;
-            shuffler ();
+            Shuffler ();
         } else {
-            if (Score > 0) {
+            //if (Score > 0) {
+                animationRedGreen.Play("redDraw",-1,0f);
                 verifyLabel.text = "Incorrect";
                 Score--;
-                scoreLabel.text = "Score: " + Score;
-            } else
-                gameOverScreen ();
+                scoreLabel.text = "Score:\n" + Score;
+            //} else {
+           //     if (GameOver != true)
+            //        GameOverScreen ();
+            //}
+
         }
+    }
+    void ZenModeSave () {
+        timeLeft = 0f;
+        pauseScreen.SetActive (true);
+        LevelScore.levelUnlock[1] = 1;
+        LevelScore.levelStar[0] = 3;
+        LevelScore.highScore = 9999;
+        LevelScore.timeMode = true;
+        saveSystem.SaveData (LevelScore);
+    }
+    void ClassicMode () {
+        timeForward += Time.deltaTime;
+        countDownLabel.text = "";
+        drawLabel.text = randomGesture.Name;
+        timeLabel.text = "Time Left: " + Mathf.RoundToInt (timeForward);
+        DrawMode ();
+    }
+    void ClassicModeCheck () {
+
+    }
+    void ClassicModeSave () {
+
+    }
+    void TaskOnClick () {
+        recognized = true;
+        Gesture candidate = new Gesture (points.ToArray ());
+        gestureResult = PointCloudRecognizer.Classify (randomGesture.Name, candidate, trainingSet.ToArray ());
+        if (isZenMode == true)
+            ZenModeCheck ();
+        else
+            ClassicModeCheck ();
 
         message = "You have written" + gestureResult.GestureClass + " " + gestureResult.Score;
-        clearBoard ();
+        ClearBoard ();
     }
 
-    void clearBoard () {
+    void ClearBoard () {
         points.Clear ();
 
         foreach (LineRenderer lineRenderer in gestureLinesRenderer) {
-
-            // lineRenderer.SetVertexCount (0);
             lineRenderer.positionCount = 0;
             Destroy (lineRenderer.gameObject);
         }
@@ -169,31 +182,54 @@ public class gameMismo : MonoBehaviour {
         gestureLinesRenderer.Clear ();
     }
 
-    void gameOverScreen () {
-        pauseScreen.SetActive (true);
+    void GameOverScreen () {
+        GameOver = true;
+        if (isZenMode == true)
+            ZenModeSave ();
+        else
+            ClassicModeSave ();
     }
 
-    // void OnGUI () {
-    // 	//GUI.Box (boxArea, "Draw Box");
+    private void DrawMode () {
+        if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer) {
+            if (Input.touchCount > 0) {
+                verifyLabel.text = "";
+                virtualKeyPosition = new Vector3 (Input.GetTouch (0).position.x, Input.GetTouch (0).position.y);
+            }
+        } else {
+            if (Input.GetMouseButton (0)) {
+                verifyLabel.text = "";
+                virtualKeyPosition = new Vector3 (Input.mousePosition.x, Input.mousePosition.y);
+            }
+        }
 
-    // 	//GUI.Label (new Rect (10, 0, 500, 50), message);
+        if (drawArea.Contains (virtualKeyPosition)) {
 
-    // 	// if (GUI.Button(new Rect(Screen.width - 100, 10, 100, 30), "Recognize")) {
+            if (Input.GetMouseButtonDown (0)) {
 
-    // 	//GUI.Label(new Rect(Screen.width - 200, 150, 70, 30), "Add as: ");
-    // 	//newGestureName = GUI.TextField(new Rect(Screen.width - 150, 150, 100, 30), newGestureName);
+                if (recognized) {
+                    recognized = false;
+                    strokeId = -1;
+                    ClearBoard ();
+                }
 
-    // 	// if (GUI.Button(new Rect(Screen.width - 50, 150, 50, 30), "Add") && points.Count > 0 && newGestureName != "") {
+                ++strokeId;
 
-    // 	// 	string fileName = String.Format("{0}/{1}-{2}.xml", Application.persistentDataPath, newGestureName, DateTime.Now.ToFileTime());
+                Transform tmpGesture = Instantiate (gestureOnScreenPrefab, transform.position, transform.rotation) as Transform;
+                currentGestureLineRenderer = tmpGesture.GetComponent<LineRenderer> ();
 
-    // 	// 	#if !UNITY_WEBPLAYER
-    // 	// 		GestureIO.WriteGesture(points.ToArray(), newGestureName, fileName);
-    // 	// 	#endif
+                gestureLinesRenderer.Add (currentGestureLineRenderer);
 
-    // 	// 	trainingSet.Add(new Gesture(points.ToArray(), newGestureName));
+                vertexCount = 0;
+            }
 
-    // 	// 	newGestureName = "";
-    // 	// }
-    // }
+            if (Input.GetMouseButton (0)) {
+                points.Add (new Point (virtualKeyPosition.x, -virtualKeyPosition.y, strokeId));
+
+                // currentGestureLineRenderer.SetVertexCount (++vertexCount);
+                currentGestureLineRenderer.positionCount = ++vertexCount;
+                currentGestureLineRenderer.SetPosition (vertexCount - 1, Camera.main.ScreenToWorldPoint (new Vector3 (virtualKeyPosition.x, virtualKeyPosition.y, 10)));
+            }
+        }
+    }
 }

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class sceneLoader : MonoBehaviour {
 
     private int scene;
-    [SerializeField] private Image progressBar;
-    [SerializeField] private Text loadingText;
+    public Image progressBar;
+    public Text loadingText;
     // Updates once per frame
     void Start () {
         StartCoroutine (LoadNewScene ());

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class gameUIScene : MonoBehaviour {
+    public int LevelSelection;
     public int timeAttackSceneNumber;
     public int classicModeSceneNumber;
     public int homeSceneNumber;
@@ -27,8 +28,21 @@ public class gameUIScene : MonoBehaviour {
 
     public void LoadTimeAttackGame () {
         //SceneManager.LoadScene(timeAttackSceneNumber);
+        BoolPrefs.SetBool("isTimeAttack",true);
         PlayerPrefs.SetInt ("sceneToLoad", timeAttackSceneNumber);
         SceneManager.LoadScene (loadSceneNumber);
+    }
+    public void LevelSelectionNumberButton(int i)
+    {
+        LevelSelection = i;
+    }
+
+    public void LoadGameWithLevel()
+    {
+        PlayerPrefs.SetInt("levelToLoad",LevelSelection);
+        BoolPrefs.SetBool("isTimeAttack", false);
+        PlayerPrefs.SetInt("sceneToLoad", timeAttackSceneNumber);
+        SceneManager.LoadScene(loadSceneNumber);
     }
 
     public void LoadClassicModeGame () {
