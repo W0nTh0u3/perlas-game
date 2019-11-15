@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class gameMismoScene : MonoBehaviour {
     public int loadSceneNumber;
     public int homeMenuIndexNumber;
+    public int levelSelectIndexNumber;
     private int sceneIndex;
     // Start is called before the first frame update
     void Start () {
@@ -14,9 +15,21 @@ public class gameMismoScene : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyDown (KeyCode.Escape)) {
-            PlayerPrefs.SetInt ("sceneToLoad", homeMenuIndexNumber);
-            SceneManager.LoadScene (loadSceneNumber);
+        if (Input.GetKeyDown (KeyCode.Escape)) {   
+            if (sceneIndex != levelSelectIndexNumber)
+            {
+                Debug.Log(PlayerPrefs.GetInt("levelToLoad"));
+                if (PlayerPrefs.GetInt("levelToLoad") == 0)
+                    PlayerPrefs.SetInt("sceneToLoad", homeMenuIndexNumber);
+                else
+                    PlayerPrefs.SetInt("sceneToLoad", levelSelectIndexNumber);
+                SceneManager.LoadScene (loadSceneNumber);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("sceneToLoad", homeMenuIndexNumber);
+                SceneManager.LoadScene(loadSceneNumber);
+            }    
         }
     }
 }

@@ -27,6 +27,7 @@ public class gameUIScene : MonoBehaviour {
     }
 
     public void LoadTimeAttackGame () {
+        PlayerPrefs.SetInt("levelToLoad", 0);
         //SceneManager.LoadScene(timeAttackSceneNumber);
         BoolPrefs.SetBool("isTimeAttack",true);
         PlayerPrefs.SetInt ("sceneToLoad", timeAttackSceneNumber);

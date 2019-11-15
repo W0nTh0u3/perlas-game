@@ -13,10 +13,9 @@ public class selectDidYouKnowImage : MonoBehaviour {
         for (int x = 0; x < dykImages.Length; x++) {
             dyks[x] = (Sprite) dykImages[x];
         }
-        pickDidYouKnow ();
+        PickDidYouKnow ();
     }
-    void pickDidYouKnow () {
-        Debug.Log (dyks.Length);
+    void PickDidYouKnow () {
         int randInt = Random.Range (0, dyks.Length - 1);
         gameObject.GetComponent<Image> ().sprite = dyks[randInt];
     }

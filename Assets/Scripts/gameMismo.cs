@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class gameMismo : MonoBehaviour {
+    public Animator starController;
     public Animator animationRedGreen;
     private Data LevelScore = new Data ();
     public Image drawPanel;
@@ -45,13 +46,13 @@ public class gameMismo : MonoBehaviour {
 
     //private string newGestureName = "";
     private float timeLeft = 11f;
-    private float countDownTime = 4f;
+    private float countDownTime = 4.4f;
     private float timeForward = 0f;
     private bool isZenMode;
     private int numLevelClicked = 0;
     private Result gestureResult;
     void Start () {
-        Debug.Log(Application.persistentDataPath);
+        Debug.Log("Save Data Path: " + Application.persistentDataPath.ToString());
         animationRedGreen.Play("DefaultDraw");
         isZenMode = BoolPrefs.GetBool ("isTimeAttack");
         if (isZenMode == false) {
@@ -81,13 +82,13 @@ public class gameMismo : MonoBehaviour {
 
     void Shuffler () {
         randomGesture = selections[UnityEngine.Random.Range (0, selections.Length)];
-        Debug.Log (isZenMode);
-        Debug.Log (numLevelClicked);
+        Debug.Log ("Is Zen Mode? " + isZenMode.ToString());
+        Debug.Log ("This Is Level: " + numLevelClicked.ToString());
         //drawLabel.text = randomGesture.Name;
     }
 
     void Update () {
-        if (countDownTime < 0) {
+        if (countDownTime <= 0) {
             if (isZenMode == true)
                 ZenMode ();
             else
@@ -103,7 +104,7 @@ public class gameMismo : MonoBehaviour {
     }
     void ZenMode () {
         timeLeft -= Time.deltaTime;
-        if (timeLeft >= 0) {
+        if (timeLeft > 0) {
             countDownLabel.text = "";
             drawLabel.text = randomGesture.Name;
             timeLabel.text = Mathf.RoundToInt (timeLeft).ToString ();
@@ -119,26 +120,33 @@ public class gameMismo : MonoBehaviour {
             animationRedGreen.Play("greenDraw",-1,0f);
             //verifyLabel.text = "Correct: " + percentScore.ToString () + " %";
             verifyLabel.text = "Correct";
+            Handheld.Vibrate();
             Score++;
             scoreLabel.text = "Score:\n" + Score;
             timeLeft += 10f;
             Shuffler ();
         } else {
-            //if (Score > 0) {
+            if (Score > 0) {
                 animationRedGreen.Play("redDraw",-1,0f);
                 verifyLabel.text = "Incorrect";
+                Handheld.Vibrate();
                 Score--;
                 scoreLabel.text = "Score:\n" + Score;
-            //} else {
-           //     if (GameOver != true)
-            //        GameOverScreen ();
-            //}
+            } else {
+               if (GameOver != true) {
+                    animationRedGreen.Play("redDraw", -1, 0f);
+                    Handheld.Vibrate();
+                    GameOverScreen ();
+               }
+                
+            }
 
         }
     }
     void ZenModeSave () {
         timeLeft = 0f;
         pauseScreen.SetActive (true);
+        starController.Play("2star", -1, -0.5f);
         LevelScore.levelUnlock[1] = 1;
         LevelScore.levelStar[0] = 3;
         LevelScore.highScore = 9999;
@@ -149,7 +157,7 @@ public class gameMismo : MonoBehaviour {
         timeForward += Time.deltaTime;
         countDownLabel.text = "";
         drawLabel.text = randomGesture.Name;
-        timeLabel.text = "Time Left: " + Mathf.RoundToInt (timeForward);
+        timeLabel.text = Mathf.RoundToInt (timeForward).ToString();
         DrawMode ();
     }
     void ClassicModeCheck () {
