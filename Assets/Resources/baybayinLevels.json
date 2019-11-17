@@ -1,0 +1,49 @@
+{
+  "baybayin": [
+    {
+      "levelName": "Intro",
+      "level": 1,
+      "letters": ["Ba"]
+    },
+    {
+      "levelName": "Intro Kudlit",
+      "level": 2,
+      "letters": ["Ha"]
+    },
+    {
+      "levelName": "Vowels",
+      "level": 3,
+      "letters": ["Ha"]
+    },
+    {
+      "levelName": "Other Consonants Part 1",
+      "level": 4,
+      "letters": ["Ha"]
+    },
+    {
+      "levelName": "Other Consonants Part 2",
+      "level": 5,
+      "letters": ["Ha"]
+    },
+    {
+      "level": 6,
+      "letters": ["Ha"]
+    },
+    {
+      "level": 7,
+      "letters": ["Ha"]
+    },
+    {
+      "level": 8,
+      "letters": ["Ha"]
+    },
+    {
+      "level": 9,
+      "letters": ["Ha"]
+    },
+    {
+      "level": 10,
+      "letters": ["Ha"]
+    }
+  ]
+}

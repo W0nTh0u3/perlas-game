@@ -879,7 +879,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.20143127, y: 967.30884}
+  m_AnchoredPosition: {x: -0.20002747, y: 3.785202}
   m_SizeDelta: {x: -0.39996338, y: -0.6000061}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &432876636
@@ -935,7 +935,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1720245674}
         m_MethodName: LoadGameWithLevel
         m_Mode: 1
@@ -946,7 +946,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &432876637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1147,7 +1147,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1720245674}
         m_MethodName: LoadGameWithLevel
         m_Mode: 1
@@ -1158,7 +1158,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &515000478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1259,6 +1259,17 @@ MonoBehaviour:
   - {fileID: 2020297184}
   - {fileID: 1246308676}
   - {fileID: 451731792}
+  levelBtnSelection:
+  - {fileID: 1508752957}
+  - {fileID: 2095487672}
+  - {fileID: 515000477}
+  - {fileID: 903894692}
+  - {fileID: 1061468962}
+  - {fileID: 1383536315}
+  - {fileID: 593924510}
+  - {fileID: 1916231680}
+  - {fileID: 2042949197}
+  - {fileID: 432876636}
 --- !u!1 &555932579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,7 +1537,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1720245674}
         m_MethodName: LoadGameWithLevel
         m_Mode: 1
@@ -1537,7 +1548,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &593924511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1965,7 +1976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.20140076, y: 241.97351}
+  m_AnchoredPosition: {x: -0.19998169, y: -3.7848969}
   m_SizeDelta: {x: -0.39996338, y: -0.6000061}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &903894692
@@ -2021,7 +2032,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1720245674}
         m_MethodName: LoadGameWithLevel
         m_Mode: 1
@@ -2032,7 +2043,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &903894693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2521,9 +2532,9 @@ RectTransform:
   m_Father: {fileID: 1566379576}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -191.11111}
+  m_AnchorMin: {x: 0.5, y: 0.30426845}
+  m_AnchorMax: {x: 0.5, y: 0.30426845}
+  m_AnchoredPosition: {x: 0, y: 148.88892}
   m_SizeDelta: {x: 803.6, y: 1268.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1048744479
@@ -2653,7 +2664,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1720245674}
         m_MethodName: LoadGameWithLevel
         m_Mode: 1
@@ -2664,7 +2675,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &1061468963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3384,7 +3395,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.20140076, y: 483.75363}
+  m_AnchoredPosition: {x: 0.19999695, y: -0.29992676}
   m_SizeDelta: {x: -0.39996338, y: -0.6000061}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1383536315
@@ -3440,7 +3451,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1720245674}
         m_MethodName: LoadGameWithLevel
         m_Mode: 1
@@ -3451,7 +3462,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &1383536316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3938,7 +3949,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1720245674}
         m_MethodName: LoadGameWithLevel
         m_Mode: 1
@@ -3949,7 +3960,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &1508752958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3970,7 +3981,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -4019,10 +4030,10 @@ RectTransform:
   m_Father: {fileID: 1566379576}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -121.72241}
-  m_SizeDelta: {x: 900, y: 682.2}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 646}
+  m_SizeDelta: {x: 900, y: 570.178}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1546707755
 MonoBehaviour:
@@ -4044,7 +4055,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 699005012033699141, guid: 9d2bf70d79d85ba4b8bb1692434aee7c, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -4072,6 +4083,7 @@ GameObject:
   - component: {fileID: 1566379575}
   - component: {fileID: 1566379574}
   - component: {fileID: 1566379573}
+  - component: {fileID: 1566379578}
   - component: {fileID: 1566379577}
   m_Layer: 5
   m_Name: Canvas
@@ -4173,12 +4185,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1566379572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a5c07bf501c45d40b99793df17f9d75, type: 3}
+  m_Script: {fileID: 11500000, guid: e4761563b1364264f8dc08331b68cc8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   loadSceneNumber: 4
   homeMenuIndexNumber: 1
   levelSelectIndexNumber: 2
+--- !u!114 &1566379578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566379572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bc029f7d18f7ea40aa3acc3567e7244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1608423996
 GameObject:
   m_ObjectHideFlags: 0
@@ -4915,7 +4939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.20140076, y: 725.5334}
+  m_AnchoredPosition: {x: -0.19998169, y: 3.7851028}
   m_SizeDelta: {x: -0.39996338, y: -0.6000061}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1916231680
@@ -4971,7 +4995,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1720245674}
         m_MethodName: LoadGameWithLevel
         m_Mode: 1
@@ -4982,7 +5006,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &1916231681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5126,10 +5150,10 @@ RectTransform:
   m_Father: {fileID: 1546707754}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: -395}
-  m_SizeDelta: {x: 712.04004, y: 175.85901}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -318}
+  m_SizeDelta: {x: -187.95996, y: -396.141}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!95 &1927752992
 Animator:
@@ -5550,7 +5574,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1720245674}
         m_MethodName: LoadGameWithLevel
         m_Mode: 1
@@ -5561,7 +5585,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &2042949198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5837,7 +5861,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
       - m_Target: {fileID: 1720245674}
         m_MethodName: LoadGameWithLevel
         m_Mode: 1
@@ -5848,7 +5872,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &2095487673
 MonoBehaviour:
   m_ObjectHideFlags: 0

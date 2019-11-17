@@ -1,0 +1,44 @@
+{
+  "baybayin": [
+    {
+      "level": 1,
+      "letters": ["Ba"]
+    },
+    {
+      "level": 2,
+      "letters": ["B", "Be/Bi", "Bo/Bu"]
+    },
+    {
+      "level": 3,
+      "letters": ["A", "E/I", "O/U"]
+    },
+    {
+      "level": 4,
+      "letters": ["Ka", "Da/Ra", "Ga", "Ha", "La", "Ma"]
+    },
+    {
+      "level": 5,
+      "letters": ["Na", "Nga", "Pa", "Sa", "Ta", "Wa", "Ya"]
+    },
+    {
+      "level": 6,
+      "letters": ["Ha"]
+    },
+    {
+      "level": 7,
+      "letters": ["Ha"]
+    },
+    {
+      "level": 8,
+      "letters": ["Ha"]
+    },
+    {
+      "level": 9,
+      "letters": ["Ha"]
+    },
+    {
+      "level": 10,
+      "letters": ["Ha"]
+    }
+  ]
+}

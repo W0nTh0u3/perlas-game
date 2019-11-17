@@ -7,6 +7,8 @@ ScriptsOnlyBuild:
     - AiryUIBackButtonManager
     - AiryUICustomAnimationElement
     - ConstantParallax
+    - GameLevelSelectChill
+    - gameLevelSelectScene
     - gameMismo
     - gameMismoScene
     - gameUIScene
@@ -31,6 +33,7 @@ ScriptsOnlyBuild:
     - TMPro.TextMeshProUGUI
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -42,6 +45,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Text
     - UnityEngine.UI.Toggle
     com.unity.multiplayer-hlapi.Runtime.dll:
+    - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
   sceneClasses:
     Assets/Scenes/Game Did You Know.unity:
@@ -70,19 +74,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10002}
     - Class: 114
-      Script: {instanceID: 10514}
+      Script: {instanceID: 10516}
     - Class: 114
-      Script: {instanceID: 10720}
+      Script: {instanceID: 10722}
     - Class: 114
-      Script: {instanceID: 11282}
+      Script: {instanceID: 11286}
     - Class: 114
-      Script: {instanceID: 11526}
+      Script: {instanceID: 11530}
     - Class: 114
-      Script: {instanceID: 11578}
+      Script: {instanceID: 11582}
     - Class: 114
-      Script: {instanceID: 11606}
+      Script: {instanceID: 11610}
     - Class: 114
-      Script: {instanceID: 12086}
+      Script: {instanceID: 12090}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -155,27 +159,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10226}
     - Class: 114
-      Script: {instanceID: 10550}
+      Script: {instanceID: 10552}
     - Class: 114
-      Script: {instanceID: 10870}
+      Script: {instanceID: 10872}
     - Class: 114
-      Script: {instanceID: 10944}
+      Script: {instanceID: 10948}
     - Class: 114
-      Script: {instanceID: 11016}
+      Script: {instanceID: 11020}
     - Class: 114
-      Script: {instanceID: 11282}
+      Script: {instanceID: 11286}
     - Class: 114
-      Script: {instanceID: 11300}
+      Script: {instanceID: 11304}
     - Class: 114
-      Script: {instanceID: 11410}
+      Script: {instanceID: 11414}
     - Class: 114
-      Script: {instanceID: 11606}
+      Script: {instanceID: 11610}
     - Class: 114
-      Script: {instanceID: 11820}
+      Script: {instanceID: 11824}
     - Class: 114
-      Script: {instanceID: 11952}
+      Script: {instanceID: 11956}
     - Class: 114
-      Script: {instanceID: 12050}
+      Script: {instanceID: 12054}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -222,25 +226,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10002}
     - Class: 114
-      Script: {instanceID: 10514}
+      Script: {instanceID: 10256}
     - Class: 114
-      Script: {instanceID: 10674}
+      Script: {instanceID: 10516}
     - Class: 114
-      Script: {instanceID: 10870}
+      Script: {instanceID: 10676}
     - Class: 114
-      Script: {instanceID: 11016}
+      Script: {instanceID: 10872}
     - Class: 114
-      Script: {instanceID: 11038}
+      Script: {instanceID: 10916}
     - Class: 114
-      Script: {instanceID: 11282}
+      Script: {instanceID: 11020}
     - Class: 114
-      Script: {instanceID: 11526}
+      Script: {instanceID: 11042}
     - Class: 114
-      Script: {instanceID: 11606}
+      Script: {instanceID: 11286}
     - Class: 114
-      Script: {instanceID: 12086}
+      Script: {instanceID: 11530}
     - Class: 114
-      Script: {instanceID: 12138}
+      Script: {instanceID: 11610}
+    - Class: 114
+      Script: {instanceID: 12090}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -293,17 +299,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10172}
     - Class: 114
-      Script: {instanceID: 10514}
+      Script: {instanceID: 10516}
     - Class: 114
-      Script: {instanceID: 10958}
+      Script: {instanceID: 10962}
     - Class: 114
-      Script: {instanceID: 11016}
+      Script: {instanceID: 11020}
     - Class: 114
-      Script: {instanceID: 11606}
+      Script: {instanceID: 11286}
     - Class: 114
-      Script: {instanceID: 12086}
+      Script: {instanceID: 11530}
     - Class: 114
-      Script: {instanceID: 12138}
+      Script: {instanceID: 11610}
+    - Class: 114
+      Script: {instanceID: 12090}
+    - Class: 114
+      Script: {instanceID: 12142}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -360,23 +370,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10172}
     - Class: 114
-      Script: {instanceID: 10514}
+      Script: {instanceID: 10516}
     - Class: 114
-      Script: {instanceID: 10870}
+      Script: {instanceID: 10872}
     - Class: 114
-      Script: {instanceID: 11016}
+      Script: {instanceID: 11020}
     - Class: 114
-      Script: {instanceID: 11038}
+      Script: {instanceID: 11042}
     - Class: 114
-      Script: {instanceID: 11282}
+      Script: {instanceID: 11286}
     - Class: 114
-      Script: {instanceID: 11526}
+      Script: {instanceID: 11530}
     - Class: 114
-      Script: {instanceID: 11606}
+      Script: {instanceID: 11610}
     - Class: 114
-      Script: {instanceID: 12086}
+      Script: {instanceID: 12090}
     - Class: 114
-      Script: {instanceID: 12102}
+      Script: {instanceID: 12106}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -546,18 +556,6 @@ ScriptsOnlyBuild:
     className: NetworkTransform
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: UnityEngine.Advertisements.dll
-    namespaceName: UnityEngine.Advertisements
-    className: CallbackExecutor
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: UnityEngine.Advertisements.dll
-    namespaceName: UnityEngine.Advertisements.Editor
-    className: Placeholder
-  - hash:
-      serializedVersion: 2
       Hash: 0f1d4fbf6e162a70489a9bfe0e62e09c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -622,6 +620,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: AspectRatioFitter
+  - hash:
+      serializedVersion: 2
+      Hash: 82358411757586f3dafb45affc4669ec
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: gameLevelSelectScene
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -750,7 +754,7 @@ ScriptsOnlyBuild:
     className: NetworkTransformVisualizer
   - hash:
       serializedVersion: 2
-      Hash: 3b042ae7c5f0b8abe1727382d34239eb
+      Hash: 837f7ce820ead3adf2c4124d32cbc757
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: levels
@@ -829,12 +833,18 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameLevelSelectChill
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
-      Hash: 03dc6e2ba0ea7b76a59c291adac74346
+      Hash: 4b17f872a85ac20e19f299166a9f6e3c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: gameMismo
@@ -1248,7 +1258,7 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
-      Hash: 82358411757586f3dafb45affc4669ec
+      Hash: 9f139606db8a3f943442830ccd0d7c93
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: gameMismoScene

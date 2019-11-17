@@ -16,7 +16,7 @@ public class timeModePlay : MonoBehaviour {
         if (isClassicDone != true) {
             timeModePlayBtn.interactable = isClassicDone;
             timeModeText.color = new Color32 (255, 255, 255, 95);
-            timeModeText.text = "Locked";
+            timeModeText.text = "Locked\n Zen Mode";
         }
     }
 }

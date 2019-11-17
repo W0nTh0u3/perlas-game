@@ -10,6 +10,9 @@ public class levels : MonoBehaviour {
     public int highScore;
     public Sprite[] levelStarDisplay;
     public Image[] levelNumberS;
+    public Button[] levelBtnSelection = new Button[10];
+    private float x = 1f;
+    private readonly RuntimePlatform platform = Application.platform;
     // Start is called before the first frame update
     void Start () {
         dataC data = saveSystem.LoadData ();
@@ -35,10 +38,37 @@ public class levels : MonoBehaviour {
             else if (levelStar[x] == 3)
                 levelNumberS[x].sprite = levelStarDisplay[3];
         }
+        foreach (var button in levelBtnSelection)
+        {
+            button.interactable = false;
+        }
+        for (int z=0; z < levelBtnSelection.Length; z++)
+        {
+            if (levelUnlock[z] == 0)
+                levelBtnSelection[z].image.color = new Color32(125,125,125,125);
+        }
     }
 
     // Update is called once per frame
     void Update () {
-
+        if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer)
+        {
+            if (x <= 0)
+            {
+                EnableAllBtns();
+            }
+            else
+                x -= Time.deltaTime;
+        }
+        else
+            EnableAllBtns();
+    }
+    private void EnableAllBtns()
+    {
+        for (int z = 0; z < levelBtnSelection.Length; z++)
+        {
+            if (levelUnlock[z] == 1)
+                levelBtnSelection[z].interactable = true;
+        }
     }
 }

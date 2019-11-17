@@ -56,24 +56,20 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
-**/
+ **/
 using System;
-using System.Linq;
 using System.Collections.Generic;
-
+using System.Linq;
 using UnityEngine;
 
-namespace PDollarGestureRecognizer
-{
+namespace PDollarGestureRecognizer {
     /// <summary>
     /// Implements the $P recognizer
     /// </summary>
-    public class PointCloudRecognizer
-    {
-        public class theTemplate
-        {
-            public float Dist {get; set;}
-            public string gestureName {get; set;}
+    public class PointCloudRecognizer {
+        public class theTemplate {
+            public float Dist { get; set; }
+            public string gestureName { get; set; }
         }
         /// <summary>
         /// Main function of the $P recognizer.
@@ -83,34 +79,33 @@ namespace PDollarGestureRecognizer
         /// <param name="candidate"></param>
         /// <param name="trainingSet"></param>
         /// <returns></returns>
-        public static Result Classify(string theName,Gesture candidate, Gesture[] trainingSet)
-        {
-            var templateList = new List<theTemplate>();
+        public static Result Classify (string theName, Gesture candidate, Gesture[] trainingSet) {
+            var templateList = new List<theTemplate> ();
             float minDistance = float.MaxValue;
             string gestureClass = "";
-            foreach (Gesture template in trainingSet)
-            {
-                float dist = GreedyCloudMatch(candidate.Points, template.Points);
-                templateList.Add(new theTemplate{
+            foreach (Gesture template in trainingSet) {
+                float dist = GreedyCloudMatch (candidate.Points, template.Points);
+                templateList.Add (new theTemplate {
                     Dist = dist,
-                    gestureName = template.Name
+                        gestureName = template.Name
                 });
                 // if (dist < minDistance)
                 // {
                 //     minDistance = dist;
                 //     gestureClass = template.Name; 
                 // }
-                if (theName == template.Name)
-                {
-                    minDistance = dist;
-                    gestureClass = template.Name; 
-                }  
+                if (theName == template.Name) {
+                    if (dist < minDistance) {
+                        minDistance = dist;
+                        gestureClass = template.Name;
+                    }
+                }
             }
-            List<theTemplate> SortedList = templateList.OrderBy(o=>o.Dist).ToList();
-            for(int i = 0; i < 5; i++){
-                Debug.Log(Mathf.Max((SortedList[i].Dist - 2.0f) / -2.0f, 0.0f) + " " + SortedList[i].gestureName);
-            }
-			return gestureClass == "" ? new Result() {GestureClass = "No match", Score = 0.0f} : new Result() {GestureClass = gestureClass, Score = Mathf.Max((minDistance - 2.0f) / -2.0f, 0.0f)};
+            // List<theTemplate> SortedList = templateList.OrderBy (o => o.Dist).ToList ();
+            // for (int i = 0; i < 5; i++) {
+            //     Debug.Log (Mathf.Max ((SortedList[i].Dist - 2.0f) / -2.0f, 0.0f) + " " + SortedList[i].gestureName);
+            // }
+            return gestureClass == "" ? new Result () { GestureClass = "No match", Score = 0.0f } : new Result () { GestureClass = gestureClass, Score = Mathf.Max ((minDistance - 2.0f) / -2.0f, 0.0f) };
         }
 
         /// <summary>
@@ -119,17 +114,15 @@ namespace PDollarGestureRecognizer
         /// <param name="points1"></param>
         /// <param name="points2"></param>
         /// <returns></returns>
-        private static float GreedyCloudMatch(Point[] points1, Point[] points2)
-        {
+        private static float GreedyCloudMatch (Point[] points1, Point[] points2) {
             int n = points1.Length; // the two clouds should have the same number of points by now
-            float eps = 0.5f;       // controls the number of greedy search trials (eps is in [0..1])
-            int step = (int)Math.Floor(Math.Pow(n, 1.0f - eps));
+            float eps = 0.5f; // controls the number of greedy search trials (eps is in [0..1])
+            int step = (int) Math.Floor (Math.Pow (n, 1.0f - eps));
             float minDistance = float.MaxValue;
-            for (int i = 0; i < n; i += step)
-            {
-                float dist1 = CloudDistance(points1, points2, i);   // match points1 --> points2 starting with index point i
-                float dist2 = CloudDistance(points2, points1, i);   // match points2 --> points1 starting with index point i
-                minDistance = Math.Min(minDistance, Math.Min(dist1, dist2));
+            for (int i = 0; i < n; i += step) {
+                float dist1 = CloudDistance (points1, points2, i); // match points1 --> points2 starting with index point i
+                float dist2 = CloudDistance (points2, points1, i); // match points2 --> points1 starting with index point i
+                minDistance = Math.Min (minDistance, Math.Min (dist1, dist2));
             }
             return minDistance;
         }
@@ -142,24 +135,20 @@ namespace PDollarGestureRecognizer
         /// <param name="points2"></param>
         /// <param name="startIndex"></param>
         /// <returns></returns>
-        private static float CloudDistance(Point[] points1, Point[] points2, int startIndex)
-        {
-            int n = points1.Length;       // the two clouds should have the same number of points by now
+        private static float CloudDistance (Point[] points1, Point[] points2, int startIndex) {
+            int n = points1.Length; // the two clouds should have the same number of points by now
             bool[] matched = new bool[n]; // matched[i] signals whether point i from the 2nd cloud has been already matched
-            Array.Clear(matched, 0, n);   // no points are matched at the beginning
+            Array.Clear (matched, 0, n); // no points are matched at the beginning
 
-            float sum = 0;  // computes the sum of distances between matched points (i.e., the distance between the two clouds)
+            float sum = 0; // computes the sum of distances between matched points (i.e., the distance between the two clouds)
             int i = startIndex;
-            do
-            {
+            do {
                 int index = -1;
                 float minDistance = float.MaxValue;
-                for(int j = 0; j < n; j++)
-                    if (!matched[j])
-                    {
-                        float dist = Geometry.SqrEuclideanDistance(points1[i], points2[j]);  // use squared Euclidean distance to save some processing time
-                        if (dist < minDistance)
-                        {
+                for (int j = 0; j < n; j++)
+                    if (!matched[j]) {
+                        float dist = Geometry.SqrEuclideanDistance (points1[i], points2[j]); // use squared Euclidean distance to save some processing time
+                        if (dist < minDistance) {
                             minDistance = dist;
                             index = j;
                         }

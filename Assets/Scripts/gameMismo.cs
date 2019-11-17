@@ -2,23 +2,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using PDollarGestureRecognizer;
+using SimpleJSON;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class gameMismo : MonoBehaviour {
+public class gameMismo : MonoBehaviour { 
     public Animator starController;
     public Animator animationRedGreen;
-    private Data LevelScore = new Data ();
+    
     public Image drawPanel;
     public Button recognizeButton;
     public Transform gestureOnScreenPrefab;
+    public TextMeshProUGUI gameOverScoreText;
     public Text drawLabel;
     public Text verifyLabel;
     public Text scoreLabel;
     public Text timeLabel;
     public Text countDownLabel;
-    public GameObject pauseScreen;
+    public GameObject gameOverScreen;
+    public GameObject nextLevelBtn;
 
     private List<Gesture> trainingSet = new List<Gesture> ();
 
@@ -35,12 +40,15 @@ public class gameMismo : MonoBehaviour {
     private List<LineRenderer> gestureLinesRenderer = new List<LineRenderer> ();
     private LineRenderer currentGestureLineRenderer;
 
+    private Gesture thisGesture;
     private Gesture randomGesture;
     private Gesture[] selections;
+    private string[] mustLoadName;
+    private Data LevelScore = new Data ();
+    private dataC loadedData;
+    private int x = 0;
     private int Score = 0;
-
     //GUI
-    private string message;
     private bool recognized;
     private bool GameOver = false;
 
@@ -52,29 +60,33 @@ public class gameMismo : MonoBehaviour {
     private int numLevelClicked = 0;
     private Result gestureResult;
     void Start () {
-        Debug.Log("Save Data Path: " + Application.persistentDataPath.ToString());
-        animationRedGreen.Play("DefaultDraw");
+        Debug.Log ("Save Data Path: " + Application.persistentDataPath.ToString ());
+        animationRedGreen.Play ("DefaultDraw");
         isZenMode = BoolPrefs.GetBool ("isTimeAttack");
         if (isZenMode == false) {
             numLevelClicked = PlayerPrefs.GetInt ("levelToLoad");
         }
-        dataC loadedData = saveSystem.LoadData ();
+        loadedData = saveSystem.LoadData ();
         Button btn = recognizeButton.GetComponent<Button> ();
         btn.onClick.AddListener (TaskOnClick);
         platform = Application.platform;
-        //drawArea = new Rect(0, 0, Screen.width, Screen.height / 2);
-
+        Debug.Log ("Is Zen Mode? " + isZenMode.ToString ());
+        Debug.Log ("This Is Level: " + numLevelClicked.ToString ());
         //Load pre-made gestures
         TextAsset[] gesturesXml = Resources.LoadAll<TextAsset> ("GestureSet/baybayin/");
         foreach (TextAsset gestureXml in gesturesXml) {
             trainingSet.Add (GestureIO.ReadGestureFromXML (gestureXml.text));
         }
         selections = trainingSet.ToArray ();
-        if (isZenMode == true)
+        if (isZenMode == true) {
+            nextLevelBtn.SetActive(false);
             scoreLabel.text = "Score:\n" + Score;
-        else
+            Shuffler ();
+        } else {
+            LoadLevelLetters ();
+            FindLettersClassic ();
             scoreLabel.text = "";
-        Shuffler ();
+        }
         drawLabel.text = "";
         countDownLabel.text = "";
         verifyLabel.text = "";
@@ -82,11 +94,20 @@ public class gameMismo : MonoBehaviour {
 
     void Shuffler () {
         randomGesture = selections[UnityEngine.Random.Range (0, selections.Length)];
-        Debug.Log ("Is Zen Mode? " + isZenMode.ToString());
-        Debug.Log ("This Is Level: " + numLevelClicked.ToString());
-        //drawLabel.text = randomGesture.Name;
     }
+    void FindLettersClassic () {
+        thisGesture = selections.SingleOrDefault (cd => cd.Name == mustLoadName[x]);
+    }
+    void LoadLevelLetters () {
+        TextAsset ta = Resources.Load ("baybayinLevels") as TextAsset;
+        JSONObject levelJson = (JSONObject) JSON.Parse (ta.text);
+        mustLoadName = new string[levelJson["baybayin"][numLevelClicked - 1]["letters"].Count];
+        //baybayinLetters = levelJson["baybayin"][1]["letters"].AsArray;
+        for (int i = 0; i < levelJson["baybayin"][numLevelClicked - 1]["letters"].Count; i++) {
+            mustLoadName[i] = levelJson["baybayin"][numLevelClicked - 1]["letters"][i];
+        }
 
+    }
     void Update () {
         if (countDownTime <= 0) {
             if (isZenMode == true)
@@ -117,65 +138,178 @@ public class gameMismo : MonoBehaviour {
     void ZenModeCheck () {
         if (gestureResult.Score > 0.9f) {
             float percentScore = (gestureResult.Score) * 100;
-            animationRedGreen.Play("greenDraw",-1,0f);
+            animationRedGreen.Play ("greenDraw", -1, 0f);
             //verifyLabel.text = "Correct: " + percentScore.ToString () + " %";
             verifyLabel.text = "Correct";
-            Handheld.Vibrate();
+            Handheld.Vibrate ();
             Score++;
             scoreLabel.text = "Score:\n" + Score;
-            timeLeft += 10f;
+            timeLeft += 5f;
             Shuffler ();
         } else {
-            if (Score > 0) {
-                animationRedGreen.Play("redDraw",-1,0f);
+            if (timeLeft > 0) {
+                animationRedGreen.Play ("redDraw", -1, 0f);
                 verifyLabel.text = "Incorrect";
-                Handheld.Vibrate();
-                Score--;
+                Handheld.Vibrate ();
+                timeLeft -= 1f;
                 scoreLabel.text = "Score:\n" + Score;
             } else {
-               if (GameOver != true) {
-                    animationRedGreen.Play("redDraw", -1, 0f);
-                    Handheld.Vibrate();
+                if (GameOver != true) {
+                    animationRedGreen.Play ("redDraw", -1, 0f);
+                    Handheld.Vibrate ();
                     GameOverScreen ();
-               }
-                
+                }
+
             }
 
         }
     }
     void ZenModeSave () {
         timeLeft = 0f;
-        pauseScreen.SetActive (true);
-        starController.Play("2star", -1, -0.5f);
-        LevelScore.levelUnlock[1] = 1;
-        LevelScore.levelStar[0] = 3;
-        LevelScore.highScore = 9999;
+        gameOverScreen.SetActive (true);
+        starController.Play ("defaultPlank", -1, -0.5f);
+        if (Score > loadedData.highScore)
+        {
+            LevelScore.highScore = Score;
+            gameOverScoreText.text = "Final Score: " + Score + "\nNew! High Score";
+        }
+        else
+        {
+            LevelScore.highScore = loadedData.highScore;
+            gameOverScoreText.text = "Final Score: " + Score + "\nHigh Score: " + LevelScore.highScore;
+        }
+        LevelScore.levelUnlock = loadedData.levelUnlock;
+        LevelScore.levelStar = loadedData.levelStar;
         LevelScore.timeMode = true;
+        //CheatSaveMax();
         saveSystem.SaveData (LevelScore);
     }
     void ClassicMode () {
-        timeForward += Time.deltaTime;
-        countDownLabel.text = "";
-        drawLabel.text = randomGesture.Name;
-        timeLabel.text = Mathf.RoundToInt (timeForward).ToString();
-        DrawMode ();
+        if (GameOver != true) {
+            timeForward += Time.deltaTime;
+            countDownLabel.text = "";
+            drawLabel.text = thisGesture.Name;
+            timeLabel.text = Mathf.RoundToInt (timeForward).ToString ();
+            DrawMode ();
+        }
     }
     void ClassicModeCheck () {
-
+        if (gestureResult.Score > 0.9f) {
+            float percentScore = (gestureResult.Score) * 100;
+            animationRedGreen.Play ("greenDraw", -1, 0f);
+            //verifyLabel.text = "Correct: " + percentScore.ToString () + " %";
+            verifyLabel.text = "Correct";
+            Handheld.Vibrate ();
+            x++;
+            if (x >= mustLoadName.Length)
+                GameOverScreen ();
+            else
+                FindLettersClassic ();
+        } else {
+            animationRedGreen.Play ("redDraw", -1, 0f);
+            verifyLabel.text = "Incorrect";
+            Handheld.Vibrate ();
+        }
     }
     void ClassicModeSave () {
+        gameOverScreen.SetActive (true);
+        gameOverScoreText.text = "Time Finished : " + Mathf.RoundToInt (timeForward).ToString () + " s";
+        LoadClassicSave();
+        int starsGot = StarScoring();
+        if (loadedData == null)
+            LevelScore.levelStar[numLevelClicked - 1] = starsGot;
+        else
+        {
+            if (loadedData.levelStar[numLevelClicked -1] < starsGot)
+                LevelScore.levelStar[numLevelClicked - 1] = starsGot;
+        }
+        if (numLevelClicked < 10)
+        {
+            if (starsGot > 1)
+            {
+                LevelScore.levelUnlock[numLevelClicked] = 1;
+                nextLevelBtn.SetActive(true);
+            }
+            else
+            {
+                LevelScore.levelUnlock[numLevelClicked] = 0;
+                nextLevelBtn.SetActive(false);
+            }   
+        }
+        else
+            nextLevelBtn.SetActive(false);
+        for(int icool = 0; icool < LevelScore.levelStar.Length; icool++)
+        {
+            if (LevelScore.levelStar[icool] == 3)
+                LevelScore.timeMode = true;
+            else
+            {
+                LevelScore.timeMode = false;
+                break;
+            }
+        }
+        saveSystem.SaveData(LevelScore);
+    }
 
+    void LoadClassicSave()
+    {
+        if (loadedData == null)
+        {
+            LevelScore.levelUnlock[0] = 1;
+        }
+        else
+        {
+            LevelScore.levelUnlock = loadedData.levelUnlock;
+            LevelScore.levelStar = loadedData.levelStar;
+            LevelScore.highScore = loadedData.highScore;
+            LevelScore.timeMode = loadedData.timeMode;
+        }
+    }
+    int StarScoring()
+    {
+        int stars;
+        if (timeForward > (mustLoadName.Length * 10))
+        {
+            starController.Play("1star", -1, -0.5f);
+            stars = 1;
+        }
+        else if (timeForward > (mustLoadName.Length * 5))
+        {
+            starController.Play("2star", -1, -0.5f);
+            stars = 2;
+        }
+        else
+        {
+            starController.Play("3star", -1, -0.5f);
+            stars = 3;
+        }
+        return stars;
+        
+    }
+
+    void CheatSaveMax()
+    {
+        for (var nice = 0; nice < 10; nice++)
+        {
+            LevelScore.levelUnlock[nice] = 1;
+        }
+        for (var nice = 0; nice < 10; nice++)
+        {
+            LevelScore.levelStar[nice] = 1;
+        }
     }
     void TaskOnClick () {
         recognized = true;
         Gesture candidate = new Gesture (points.ToArray ());
-        gestureResult = PointCloudRecognizer.Classify (randomGesture.Name, candidate, trainingSet.ToArray ());
-        if (isZenMode == true)
+        if (isZenMode == true) {
+            gestureResult = PointCloudRecognizer.Classify (randomGesture.Name, candidate, trainingSet.ToArray ());
+            Debug.Log(gestureResult.GestureClass + " : " + gestureResult.Score);
             ZenModeCheck ();
-        else
+        } else {
+            gestureResult = PointCloudRecognizer.Classify (thisGesture.Name, candidate, trainingSet.ToArray ());
+            Debug.Log(gestureResult.GestureClass + " : " + gestureResult.Score);
             ClassicModeCheck ();
-
-        message = "You have written" + gestureResult.GestureClass + " " + gestureResult.Score;
+        }
         ClearBoard ();
     }
 
