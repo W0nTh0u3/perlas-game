@@ -9,11 +9,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class gameMismo : MonoBehaviour { 
+public class gameMismo : MonoBehaviour {
+    
     public Animator starController;
     public Animator animationRedGreen;
-    
+    public Image hintImage;
     public Image drawPanel;
+    public Button hintButton;
     public Button recognizeButton;
     public Transform gestureOnScreenPrefab;
     public TextMeshProUGUI gameOverScoreText;
@@ -44,10 +46,15 @@ public class gameMismo : MonoBehaviour {
     private Gesture randomGesture;
     private Gesture[] selections;
     private string[] mustLoadName;
+    private string[] mustDisplayName;
+    private Sprite[] hintImagesList;
+    private Sprite thisHint;
+    private Sprite blankSquare;
     private Data LevelScore = new Data ();
     private dataC loadedData;
     private int x = 0;
     private int Score = 0;
+    private bool isHintShown = false;
     //GUI
     private bool recognized;
     private bool GameOver = false;
@@ -73,11 +80,13 @@ public class gameMismo : MonoBehaviour {
         Debug.Log ("Is Zen Mode? " + isZenMode.ToString ());
         Debug.Log ("This Is Level: " + numLevelClicked.ToString ());
         //Load pre-made gestures
-        TextAsset[] gesturesXml = Resources.LoadAll<TextAsset> ("GestureSet/baybayin/");
+        LoadHintImagesResources();
+        TextAsset[] gesturesXml = Resources.LoadAll<TextAsset> ("GestureSet/newSetBaybayin/");
         foreach (TextAsset gestureXml in gesturesXml) {
             trainingSet.Add (GestureIO.ReadGestureFromXML (gestureXml.text));
         }
         selections = trainingSet.ToArray ();
+        hintImage.sprite = blankSquare;
         if (isZenMode == true) {
             nextLevelBtn.SetActive(false);
             scoreLabel.text = "Score:\n" + Score;
@@ -92,11 +101,41 @@ public class gameMismo : MonoBehaviour {
         verifyLabel.text = "";
     }
 
+    public void ShowHintImage()
+    {
+        if (isHintShown == false)
+        {
+            isHintShown = true;
+            hintImage.sprite = thisHint;
+        }
+        else
+        {
+            isHintShown = false;
+            hintImage.sprite = blankSquare;
+        }
+    }
+
+    void LoadHintImagesResources()
+    {
+        UnityEngine.Object[] baybayinLettersObj = Resources.LoadAll("baybayinReference/", typeof(Sprite));
+        hintImagesList = new Sprite[baybayinLettersObj.Length];
+        for (int d = 0; d < baybayinLettersObj.Length; d++)
+            hintImagesList[d] = (Sprite)baybayinLettersObj[d];
+        blankSquare = hintImagesList.SingleOrDefault(cd => cd.name == "blankSquare");
+        //Debug.Log("Hi");
+
+    }
+
     void Shuffler () {
         randomGesture = selections[UnityEngine.Random.Range (0, selections.Length)];
+        thisHint = hintImagesList.SingleOrDefault(cd => cd.name == randomGesture.Name.Replace("/",""));
+        //hintImage.sprite = 
+
+        Debug.Log("MEh");
     }
     void FindLettersClassic () {
         thisGesture = selections.SingleOrDefault (cd => cd.Name == mustLoadName[x]);
+        thisHint = hintImagesList.SingleOrDefault(cd => cd.name == thisGesture.Name.Replace("/", ""));
     }
     void LoadLevelLetters () {
         TextAsset ta = Resources.Load ("baybayinLevels") as TextAsset;
@@ -108,6 +147,7 @@ public class gameMismo : MonoBehaviour {
         }
 
     }
+
     void Update () {
         if (countDownTime <= 0) {
             if (isZenMode == true)
@@ -127,7 +167,7 @@ public class gameMismo : MonoBehaviour {
         timeLeft -= Time.deltaTime;
         if (timeLeft > 0) {
             countDownLabel.text = "";
-            drawLabel.text = randomGesture.Name;
+            drawLabel.text = randomGesture.Name.Replace("/"," / ");
             timeLabel.text = Mathf.RoundToInt (timeLeft).ToString ();
             DrawMode ();
         } else {
@@ -140,6 +180,8 @@ public class gameMismo : MonoBehaviour {
             float percentScore = (gestureResult.Score) * 100;
             animationRedGreen.Play ("greenDraw", -1, 0f);
             //verifyLabel.text = "Correct: " + percentScore.ToString () + " %";
+            if (isHintShown == true)
+                ShowHintImage();
             verifyLabel.text = "Correct";
             Handheld.Vibrate ();
             Score++;
@@ -188,7 +230,7 @@ public class gameMismo : MonoBehaviour {
         if (GameOver != true) {
             timeForward += Time.deltaTime;
             countDownLabel.text = "";
-            drawLabel.text = thisGesture.Name;
+            drawLabel.text = thisGesture.Name.Replace("/", " / ");
             timeLabel.text = Mathf.RoundToInt (timeForward).ToString ();
             DrawMode ();
         }
@@ -198,6 +240,8 @@ public class gameMismo : MonoBehaviour {
             float percentScore = (gestureResult.Score) * 100;
             animationRedGreen.Play ("greenDraw", -1, 0f);
             //verifyLabel.text = "Correct: " + percentScore.ToString () + " %";
+            if (isHintShown == true)
+                ShowHintImage();
             verifyLabel.text = "Correct";
             Handheld.Vibrate ();
             x++;
@@ -220,7 +264,7 @@ public class gameMismo : MonoBehaviour {
             LevelScore.levelStar[numLevelClicked - 1] = starsGot;
         else
         {
-            if (loadedData.levelStar[numLevelClicked -1] < starsGot)
+            if (loadedData.levelStar[numLevelClicked - 1] < starsGot)
                 LevelScore.levelStar[numLevelClicked - 1] = starsGot;
         }
         if (numLevelClicked < 10)
@@ -232,7 +276,8 @@ public class gameMismo : MonoBehaviour {
             }
             else
             {
-                LevelScore.levelUnlock[numLevelClicked] = 0;
+                if (LevelScore.levelUnlock[numLevelClicked] != 1)
+                    LevelScore.levelUnlock[numLevelClicked] = 0;
                 nextLevelBtn.SetActive(false);
             }   
         }
@@ -285,18 +330,6 @@ public class gameMismo : MonoBehaviour {
         }
         return stars;
         
-    }
-
-    void CheatSaveMax()
-    {
-        for (var nice = 0; nice < 10; nice++)
-        {
-            LevelScore.levelUnlock[nice] = 1;
-        }
-        for (var nice = 0; nice < 10; nice++)
-        {
-            LevelScore.levelStar[nice] = 1;
-        }
     }
     void TaskOnClick () {
         recognized = true;

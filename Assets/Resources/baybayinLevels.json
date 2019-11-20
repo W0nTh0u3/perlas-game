@@ -8,40 +8,45 @@
     {
       "levelName": "Intro Kudlit",
       "level": 2,
-      "letters": ["Ha"]
+      "letters": ["B", "Be/Bi", "Bo/Bu"]
     },
     {
       "levelName": "Vowels",
       "level": 3,
-      "letters": ["Ha"]
+      "letters": ["A", "E/I", "O/U"]
     },
     {
       "levelName": "Other Consonants Part 1",
       "level": 4,
-      "letters": ["Ha"]
+      "letters": ["Ka", "Da/Ra", "Ga", "Ha", "La", "Ma"]
     },
     {
       "levelName": "Other Consonants Part 2",
       "level": 5,
-      "letters": ["Ha"]
+      "letters": ["Na", "Nga", "Pa", "Sa", "Ta", "Wa", "Ya"]
     },
     {
+      "levelName": "null",
       "level": 6,
       "letters": ["Ha"]
     },
     {
+      "levelName": "Pilipinas",
       "level": 7,
-      "letters": ["Ha"]
+      "letters": ["Pi", "Li", "Pi", "Na", "S"]
     },
     {
+      "levelName": "Baybayin Natin",
       "level": 8,
-      "letters": ["Ha"]
+      "letters": ["Ba", "Y", "Ba", "Ye/Yi", "N", "Na", "Te/Ti", "N"]
     },
     {
+      "levelName": "Perlas Ng Silangan",
       "level": 9,
       "letters": ["Ha"]
     },
     {
+      "levelName": "null",
       "level": 10,
       "letters": ["Ha"]
     }
