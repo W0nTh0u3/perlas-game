@@ -15,12 +15,12 @@ public class gameMismo : MonoBehaviour {
     public Animator animationRedGreen;
     public Image hintImage;
     public Image drawPanel;
-    public Button hintButton;
+    public GameObject hintButton;
     public Button recognizeButton;
     public Transform gestureOnScreenPrefab;
     public TextMeshProUGUI gameOverScoreText;
+    public TextMeshProUGUI levelDescText;
     public Text drawLabel;
-    public Text verifyLabel;
     public Text scoreLabel;
     public Text timeLabel;
     public Text countDownLabel;
@@ -46,7 +46,7 @@ public class gameMismo : MonoBehaviour {
     private Gesture randomGesture;
     private Gesture[] selections;
     private string[] mustLoadName;
-    private string[] mustDisplayName;
+    private string levelDescName;
     private Sprite[] hintImagesList;
     private Sprite thisHint;
     private Sprite blankSquare;
@@ -60,9 +60,10 @@ public class gameMismo : MonoBehaviour {
     private bool GameOver = false;
 
     //private string newGestureName = "";
-    private float timeLeft = 11f;
+    private float timeLeft = 21f;
     private float countDownTime = 4.4f;
     private float timeForward = 0f;
+    private float hintTimer = 0f;
     private bool isZenMode;
     private int numLevelClicked = 0;
     private Result gestureResult;
@@ -90,15 +91,16 @@ public class gameMismo : MonoBehaviour {
         if (isZenMode == true) {
             nextLevelBtn.SetActive(false);
             scoreLabel.text = "Score:\n" + Score;
+            levelDescText.text = "";
             Shuffler ();
         } else {
             LoadLevelLetters ();
             FindLettersClassic ();
             scoreLabel.text = "";
+            levelDescText.text = "Level " + numLevelClicked + ":\n" + "\"" + levelDescName + "\"";
         }
         drawLabel.text = "";
         countDownLabel.text = "";
-        verifyLabel.text = "";
     }
 
     public void ShowHintImage()
@@ -130,8 +132,6 @@ public class gameMismo : MonoBehaviour {
         randomGesture = selections[UnityEngine.Random.Range (0, selections.Length)];
         thisHint = hintImagesList.SingleOrDefault(cd => cd.name == randomGesture.Name.Replace("/",""));
         //hintImage.sprite = 
-
-        Debug.Log("MEh");
     }
     void FindLettersClassic () {
         thisGesture = selections.SingleOrDefault (cd => cd.Name == mustLoadName[x]);
@@ -141,6 +141,7 @@ public class gameMismo : MonoBehaviour {
         TextAsset ta = Resources.Load ("baybayinLevels") as TextAsset;
         JSONObject levelJson = (JSONObject) JSON.Parse (ta.text);
         mustLoadName = new string[levelJson["baybayin"][numLevelClicked - 1]["letters"].Count];
+        levelDescName = levelJson["baybayin"][numLevelClicked - 1]["levelName"];
         //baybayinLetters = levelJson["baybayin"][1]["letters"].AsArray;
         for (int i = 0; i < levelJson["baybayin"][numLevelClicked - 1]["letters"].Count; i++) {
             mustLoadName[i] = levelJson["baybayin"][numLevelClicked - 1]["letters"][i];
@@ -154,6 +155,7 @@ public class gameMismo : MonoBehaviour {
                 ZenMode ();
             else
                 ClassicMode ();
+            hintTimer += Time.deltaTime;
 
         } else {
             countDownTime -= Time.deltaTime;
@@ -162,6 +164,10 @@ public class gameMismo : MonoBehaviour {
             else
                 countDownLabel.text = Mathf.RoundToInt (countDownTime).ToString ();
         }
+        if (hintTimer >= 5)
+            hintButton.SetActive(true);
+        else
+            hintButton.SetActive(false);
     }
     void ZenMode () {
         timeLeft -= Time.deltaTime;
@@ -182,16 +188,17 @@ public class gameMismo : MonoBehaviour {
             //verifyLabel.text = "Correct: " + percentScore.ToString () + " %";
             if (isHintShown == true)
                 ShowHintImage();
-            verifyLabel.text = "Correct";
+            //verifyLabel.text = "Correct";
             Handheld.Vibrate ();
             Score++;
             scoreLabel.text = "Score:\n" + Score;
             timeLeft += 5f;
             Shuffler ();
+            hintTimer = 0f;
         } else {
             if (timeLeft > 0) {
                 animationRedGreen.Play ("redDraw", -1, 0f);
-                verifyLabel.text = "Incorrect";
+                //verifyLabel.text = "Incorrect";
                 Handheld.Vibrate ();
                 timeLeft -= 1f;
                 scoreLabel.text = "Score:\n" + Score;
@@ -223,7 +230,6 @@ public class gameMismo : MonoBehaviour {
         LevelScore.levelUnlock = loadedData.levelUnlock;
         LevelScore.levelStar = loadedData.levelStar;
         LevelScore.timeMode = true;
-        //CheatSaveMax();
         saveSystem.SaveData (LevelScore);
     }
     void ClassicMode () {
@@ -242,16 +248,17 @@ public class gameMismo : MonoBehaviour {
             //verifyLabel.text = "Correct: " + percentScore.ToString () + " %";
             if (isHintShown == true)
                 ShowHintImage();
-            verifyLabel.text = "Correct";
+            //verifyLabel.text = "Correct";
             Handheld.Vibrate ();
             x++;
             if (x >= mustLoadName.Length)
                 GameOverScreen ();
             else
                 FindLettersClassic ();
+            hintTimer = 0f;
         } else {
             animationRedGreen.Play ("redDraw", -1, 0f);
-            verifyLabel.text = "Incorrect";
+            //verifyLabel.text = "Incorrect";
             Handheld.Vibrate ();
         }
     }
@@ -357,6 +364,19 @@ public class gameMismo : MonoBehaviour {
         gestureLinesRenderer.Clear ();
     }
 
+    public void UndoBoard()
+    {
+        if(strokeId >= 0)
+        {
+            points.RemoveAll(e => e.StrokeID == strokeId);
+            Destroy(gestureLinesRenderer.Last().gameObject);
+            gestureLinesRenderer.RemoveAt(gestureLinesRenderer.Count - 1);
+            --strokeId;
+            //Destroy(gestureLinesRenderer.gameObject);
+        }
+        
+    }
+
     void GameOverScreen () {
         GameOver = true;
         if (isZenMode == true)
@@ -368,12 +388,12 @@ public class gameMismo : MonoBehaviour {
     private void DrawMode () {
         if (platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer) {
             if (Input.touchCount > 0) {
-                verifyLabel.text = "";
+                //verifyLabel.text = "";
                 virtualKeyPosition = new Vector3 (Input.GetTouch (0).position.x, Input.GetTouch (0).position.y);
             }
         } else {
             if (Input.GetMouseButton (0)) {
-                verifyLabel.text = "";
+                //verifyLabel.text = "";
                 virtualKeyPosition = new Vector3 (Input.mousePosition.x, Input.mousePosition.y);
             }
         }
@@ -405,6 +425,7 @@ public class gameMismo : MonoBehaviour {
                 currentGestureLineRenderer.positionCount = ++vertexCount;
                 currentGestureLineRenderer.SetPosition (vertexCount - 1, Camera.main.ScreenToWorldPoint (new Vector3 (virtualKeyPosition.x, virtualKeyPosition.y, 10)));
             }
+            
         }
     }
 }

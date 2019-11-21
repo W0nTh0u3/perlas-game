@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\gameMismoScene.cs" />
     <Compile Include="Assets\Scripts\gameUIScene.cs" />
     <Compile Include="Assets\Scripts\levels.cs" />
+    <Compile Include="Assets\Scripts\OptionsMenu.cs" />
     <Compile Include="Assets\Scripts\PDollarGestureRecognizer\Geometry.cs" />
     <Compile Include="Assets\Scripts\PDollarGestureRecognizer\Gesture.cs" />
     <Compile Include="Assets\Scripts\PDollarGestureRecognizer\GestureIO.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Assets\Scripts\selectDicts.cs" />
     <Compile Include="Assets\Scripts\selectDidYou.cs" />
     <Compile Include="Assets\Scripts\selectDidYouKnowImage.cs" />
+    <Compile Include="Assets\Scripts\SoundControl.cs" />
     <Compile Include="Assets\Scripts\timeModePlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />

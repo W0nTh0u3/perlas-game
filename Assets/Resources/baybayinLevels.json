@@ -33,7 +33,7 @@
     {
       "levelName": "Pilipinas",
       "level": 7,
-      "letters": ["Pi", "Li", "Pi", "Na", "S"]
+      "letters": ["Pe/Pi", "Le/Li", "Pe/Pi", "Na", "S"]
     },
     {
       "levelName": "Baybayin Natin",
@@ -46,7 +46,7 @@
       "letters": ["Ha"]
     },
     {
-      "levelName": "null",
+      "levelName": "Pamantasan Ng Lungsod Ng Maynila",
       "level": 10,
       "letters": ["Ha"]
     }
