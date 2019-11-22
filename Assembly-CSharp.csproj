@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\gameMismo.cs" />
     <Compile Include="Assets\Scripts\gameMismoScene.cs" />
     <Compile Include="Assets\Scripts\gameUIScene.cs" />
+    <Compile Include="Assets\Scripts\HowToPage.cs" />
     <Compile Include="Assets\Scripts\levels.cs" />
     <Compile Include="Assets\Scripts\OptionsMenu.cs" />
     <Compile Include="Assets\Scripts\PDollarGestureRecognizer\Geometry.cs" />

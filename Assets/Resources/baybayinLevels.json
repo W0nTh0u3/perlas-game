@@ -26,14 +26,14 @@
       "letters": ["Na", "Nga", "Pa", "Sa", "Ta", "Wa", "Ya"]
     },
     {
-      "levelName": "null",
+      "levelName": "Pilipinas",
       "level": 6,
-      "letters": ["Ha"]
+      "letters": ["Pe/Pi", "Le/Li", "Pe/Pi", "Na", "S"]
     },
     {
-      "levelName": "Pilipinas",
+      "levelName": "Nakakapagpabagabag",
       "level": 7,
-      "letters": ["Pe/Pi", "Le/Li", "Pe/Pi", "Na", "S"]
+      "letters": ["Na", "Ka", "Ka", "Pa", "G", "Pa", "Ba", "Ga", "Ba", "G"]
     },
     {
       "levelName": "Baybayin Natin",
@@ -41,14 +41,42 @@
       "letters": ["Ba", "Y", "Ba", "Ye/Yi", "N", "Na", "Te/Ti", "N"]
     },
     {
-      "levelName": "Perlas Ng Silangan",
+      "levelName": "Perlas Ng Silanganan",
       "level": 9,
-      "letters": ["Ha"]
+      "letters": [
+        "Pe/Pi",
+        "D/R",
+        "La",
+        "S",
+        "Ng",
+        "Se/Si",
+        "La",
+        "Nga",
+        "Na",
+        "N"
+      ]
     },
     {
       "levelName": "Pamantasan Ng Lungsod Ng Maynila",
       "level": 10,
-      "letters": ["Ha"]
+      "letters": [
+        "Pa",
+        "Ma",
+        "N",
+        "Ta",
+        "Sa",
+        "N",
+        "Ng",
+        "Lo/Lu",
+        "Ng",
+        "So/Su",
+        "D/R",
+        "Ng",
+        "Ma",
+        "Y",
+        "Ne/Ni",
+        "La"
+      ]
     }
   ]
 }

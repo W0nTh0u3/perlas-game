@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - AiryUICustomAnimationElement
     - ConstantParallax
     - GameLevelSelectChill
+    - HowToPage
     - OptionsMenu
     - SoundControl
     - gameLevelSelectScene
@@ -35,6 +36,7 @@ ScriptsOnlyBuild:
     - TMPro.TextMeshProUGUI
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -46,6 +48,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Text
     - UnityEngine.UI.Toggle
     com.unity.multiplayer-hlapi.Runtime.dll:
+    - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
   sceneClasses:
     Assets/Scenes/Game Did You Know.unity:
@@ -363,6 +366,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
+    - Class: 92
+      Script: {instanceID: 0}
     - Class: 95
       Script: {instanceID: 0}
     - Class: 104
@@ -403,7 +408,11 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12094}
     - Class: 114
       Script: {instanceID: 12110}
+    - Class: 114
+      Script: {instanceID: 15824}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 124
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
@@ -1302,6 +1311,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 6fa88d7bd01395df2add112a23665432
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HowToPage
   platform: 13
   scenePathNames:
   - Assets/Scenes/Game Intro.unity

@@ -13,6 +13,10 @@ public class timeModePlay : MonoBehaviour {
         dataC data = saveSystem.LoadData ();
         if (data != null)
             isClassicDone = data.timeMode;
+        else
+        {
+
+        }
         if (isClassicDone != true) {
             timeModePlayBtn.interactable = isClassicDone;
             timeModeText.color = new Color32 (255, 255, 255, 95);
