@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class gameMismo : MonoBehaviour {
-    
+    public GameObject giveUpButton;
     public Animator starController;
     public Animator animationRedGreen;
     public Image hintImage;
@@ -65,6 +65,7 @@ public class gameMismo : MonoBehaviour {
     private float timeForward = 0f;
     private float hintTimer = 0f;
     private bool isZenMode;
+    private bool giveUp = false;
     private int numLevelClicked = 0;
     private Result gestureResult;
     void Start () {
@@ -88,6 +89,7 @@ public class gameMismo : MonoBehaviour {
         }
         selections = trainingSet.ToArray ();
         hintImage.sprite = blankSquare;
+        giveUpButton.SetActive(false);
         if (isZenMode == true) {
             nextLevelBtn.SetActive(false);
             scoreLabel.text = "Score:\n" + Score;
@@ -156,7 +158,8 @@ public class gameMismo : MonoBehaviour {
             else
                 ClassicMode ();
             hintTimer += Time.deltaTime;
-
+            if (giveUpButton.activeInHierarchy != true)
+                giveUpButton.SetActive(true);
         } else {
             countDownTime -= Time.deltaTime;
             if (Mathf.RoundToInt (countDownTime) == 0)
@@ -264,9 +267,18 @@ public class gameMismo : MonoBehaviour {
     }
     void ClassicModeSave () {
         gameOverScreen.SetActive (true);
-        gameOverScoreText.text = "Time Finished : " + Mathf.RoundToInt (timeForward).ToString () + " s";
         LoadClassicSave();
-        int starsGot = StarScoring();
+        int starsGot = 0;
+        if (giveUp)
+        {
+            gameOverScoreText.text = "Time Finished : DNF";
+            starController.Play("0star", -1, -0.5f);
+        }
+        else
+        {
+            gameOverScoreText.text = "Time Finished : " + Mathf.RoundToInt(timeForward).ToString() + " s";
+            starsGot = StarScoring();
+        }     
         if (loadedData == null)
             LevelScore.levelStar[numLevelClicked - 1] = starsGot;
         else
@@ -351,6 +363,12 @@ public class gameMismo : MonoBehaviour {
             ClassicModeCheck ();
         }
         ClearBoard ();
+    }
+
+    public void QuitGame()
+    {
+        giveUp = true;
+        GameOverScreen();
     }
 
     void ClearBoard () {
