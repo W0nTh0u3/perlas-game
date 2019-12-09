@@ -9,6 +9,7 @@ ScriptsOnlyBuild:
     - ConstantParallax
     - GameLevelSelectChill
     - HowToPage
+    - MainMenuOnlyScene
     - OptionsMenu
     - SoundControl
     - gameLevelSelectScene
@@ -383,6 +384,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9880}
     - Class: 114
+      Script: {instanceID: 9946}
+    - Class: 114
       Script: {instanceID: 10002}
     - Class: 114
       Script: {instanceID: 10072}
@@ -416,6 +419,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12096}
     - Class: 114
       Script: {instanceID: 12112}
+    - Class: 114
+      Script: {instanceID: 27178}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1323,6 +1328,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: ceb2c90c805ac030a09d2a106cd6e14f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MainMenuOnlyScene
   platform: 13
   scenePathNames:
   - Assets/Scenes/Game Intro.unity
@@ -1330,4 +1341,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Game Level Select.unity
   - Assets/Scenes/Game Mismo.unity
   - Assets/Scenes/Game Did You Know.unity
-  playerPath: E:/UnityProject/game.apk
+  playerPath: E:/UnityProject/game1.21.apk
