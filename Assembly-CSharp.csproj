@@ -70,6 +70,7 @@
     <Compile Include="Assets\Airy UI\Scripts\AiryUIBackButton.cs" />
     <Compile Include="Assets\Airy UI\Scripts\AiryUIBackButtonManager.cs" />
     <Compile Include="Assets\Airy UI\Scripts\AiryUICustomAnimationElement.cs" />
+    <Compile Include="Assets\MainMenuOnlyScene.cs" />
     <Compile Include="Assets\Scripts\Abstact\UIParallax.cs" />
     <Compile Include="Assets\Scripts\BoolPrefs.cs" />
     <Compile Include="Assets\Scripts\ConstantParallax.cs" />

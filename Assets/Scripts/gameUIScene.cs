@@ -18,10 +18,8 @@ public class gameUIScene : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if (Input.GetKeyDown (KeyCode.Escape)) {
-            if (sceneIndex != classicModeSceneNumber)
-                Application.Quit();
-            else
-                LoadHomeScreen();
+            if (sceneIndex == classicModeSceneNumber)
+                LoadHomeScreen();        
         }
     }
 
@@ -62,4 +60,5 @@ public class gameUIScene : MonoBehaviour {
     public void introHomeScreen () {
         SceneManager.LoadScene (homeSceneNumber);
     }
+
 }
